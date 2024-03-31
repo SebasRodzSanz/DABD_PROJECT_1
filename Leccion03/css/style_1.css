@@ -1,0 +1,129 @@
+*{
+		
+}
+#titulo{
+	text-align: center;
+	display: grid;/*Permite la creacion de columnas*/
+	width: 100%;
+	grid-template-columns: 25% 50% 25%;/*Permite definir el tamaño de las columnas*/
+	background-color: #002b7a;
+} 
+#titulo p,h1{
+	color: #e6ac00;
+}
+body{
+	/* Poner una imagen de fondo
+	background: url('../img/fondo1.png') no-repeat;
+	background-size: cover;
+	background-position: center;*/
+	/*background-color: #002b7a;*/
+	margin: 0px;
+	padding: 0px;
+	line-height:1.5;
+}
+.links{
+	text-align: center;
+	display: block;
+	padding: 10px;
+	background-color: #d59f0f;
+}
+.boton{
+	text-decoration: none;
+	color:blue;
+	background-color:white;
+	display: inline-block;
+	margin: 5px 12px;
+	border: 2px solid #002b7a;
+	padding: 10px;
+}
+.boton:hover{
+    background-color: #e6ac00;
+    color: white;
+}
+.info{
+	background-color: white;
+	width: 90%;
+	margin: 20px;
+}
+.info h4{
+	text-align: justify;
+	font-size: 24px;
+	color: #e6ac00;
+}
+.info h3{
+	text-align: center;
+	font-size: 24px;
+	color: #002b7a;
+}
+.info p{
+	text-align: justify;
+	font-size: 19px;
+	color: #002b7a;
+	font-family: Georgia, serif;
+}
+/*Footer*/
+.fter{
+	background-color: #002b7a;
+	padding: 50px 0px;
+
+}
+ul{
+	list-style: none;
+}
+.rgln{
+	display: flex;
+	flex-wrap: wrap;
+}
+.cont{
+	max-width: 1170px;
+	margin: auto;
+}
+.fter_col{
+	width: 25%;
+	padding: 0px 15px;
+}
+.fter_col h4{
+	font-size: 30px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 30px;
+	font-weight: 500;
+	position: relative;
+}
+.fter_col h4::before{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -10px;
+	background-color: #e6ac00;
+	height: 2px;
+	box-sizing: border-box;
+	width:60px;
+}
+.fter_col ul li:not(:last-child){
+	margin-bottom:10px ;
+}
+.fter_col ul li a{
+	font-size: 20px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	display: block;
+	transition: all 0.3s ease;
+}
+.fter_col ul li a:hover{
+	color:#ffffff;
+	padding-left: 8px;
+}
+.fter_col ul li p{
+	font-size: 15px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	display: block;
+	transition: all 0.3s ease;
+}
+
+

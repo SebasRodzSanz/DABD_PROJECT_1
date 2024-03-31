@@ -1,0 +1,65 @@
+Scripts_pract_coordinación 
+//crear tabla alumno y docente
+CREATE SCHEMA Coordinacion_web;
+USE coordinacion_web
+CREATE TABLE Alumno (
+	Cuenta VARCHAR(15) NOT NULL,
+	Nombre VARCHAR(40) NOT NULL,
+	Carrera VARCHAR(25) NOT NULL,
+	Opcion_titulacion VARCHAR(25) NOT NULL,
+	Correo_e VARCHAR(30) NULL,
+	Telefono VARCHAR(12) NOT NULL,
+	PRIMARY KEY (Cuenta)
+);
+CREATE TABLE Docente(
+	Num_trabajador VARCHAR(15)  NOT NULL,
+	Nombre_docente VARCHAR(40) NOT NULL,
+	Fecha_ingreso DATE NOT NULL,
+	Rfc VARCHAR(25) NOT NULL,
+	Titulo VARCHAR(30) NOT NULL,
+	Especialidad VARCHAR(30) NOT NULL,
+	Celular VARCHAR(12) NOT NULL,
+	Correo_e VARCHAR(30) NOT NULL,
+	Antiguedad VARCHAR(3) NOT NUL,
+	Total_cargos VARCHAR(2) NOT NULL,
+	Seccion VARCHAR(20) NOT NULL,
+	PRIMARY KEY (Num_trabajador)
+);
+//La antiguedad es un atributo derivado de la fecha de ingerso.
+// Formato del tipo date 'YYYY-MM-DD'
+//Sentencias SQL DML
+INSERT INTO Docente (Num_trabajador,Nombre_docente,Fecha_ingreso,Rfc, Titulo,Especialidad,Celular,Correo_e,Total_cargos,Seccion) 
+VALUES ('000001','Omar Nieto Nieto','1994-09-24','OM19348DGG','Lic. Administración publica','Administración Publica','5530777608',
+'Omar_admon@gmail.com','1','Administración');
+SELECT * FROM Docente WHERE Seccion = 'Administración';
+SELECT * FROM Docente WHERE Num_trabajador = '000001';
+DELETE FROM Docente WHERE Num_trabajador = '000001';
+UPDATE Docente SET Especialidad = 'Administración informática', Correo_e = 'omar_unam@gmail.com',Celular = '5517962110',
+Total_cargos = '3' WHERE Num_trabajador = '000001';
+
+INSERT INTO Alumno(Cuenta, Nombre, Carrera, Opcion_titulacion, Correo_e, Telefono) 
+VALUES ('322093872','Sebastian R. Hernandez','Informática','Tesis','sebas_SAS@gmail.com','5519203491');
+
+UPDATE Alumno SET Nombre='$nombre', Opcion_titulacion='$opc_titulo',
+ Telefono='$celular', Correo_e='$correo' WHERE Cuenta = '$cuenta';
+
+//PALABRA RESERVADA DISTINCT EN MYSQL 
+NOS PERMITE EVITAR DUPLICAR DATOS EN UNA SENTENCIA SELECT 
+
+Por defecto, las consultas SQL muestran todas las filas devueltas, 
+incluyendo las duplicadas, en el conjunto de resultados. La palabra 
+clave DISTINCT en la cláusula SELECT se utiliza para eliminar las 
+filas duplicadas y mostrar una lista única de valores. En otras palabras, 
+la palabra clave DISTINCT recupera valores únicos de una tabla.
+
+LA SIGUIENTE CONSULTA NOS DEVUELVE LAS SECCIONES DUPLICADAS DE LA TABLA DOCENTE 
+SELECT Seccion FROM Docente;
+APLICAMOS LA PALABRA DISTINCT ANTES DE LA PALABRA SELECT
+SELECT DISTINCT Seccion FROM Docente;
+SELECT DISTINCT Opcion_titulacion FROM Alumno;
+
+XAMPP SHELL 
+ mysql -u root -h localhost -p 
+ password: enter 
+SHOW  DATABASES;
+USE coordinacion_web;

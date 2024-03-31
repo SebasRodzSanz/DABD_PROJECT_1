@@ -1,0 +1,114 @@
+*{
+		
+}
+#titulo{
+	text-align: center;
+	display: grid;/*Permite la creacion de columnas*/
+	width: 100%;
+	grid-template-columns: 25% 50% 25%;/*Permite definir el tamaño de las columnas*/
+	background-color: #002b7a;
+} 
+#titulo p,h1{
+	color: #e6ac00;
+}
+body{
+	margin: 0px;
+	padding: 0px;
+	line-height:1.5;
+}
+
+nav {
+	float: left;
+	width: 20%;
+	margin: 0px 6px;
+}
+nav button{
+	margin :10px;
+	padding: 7px;
+	text-decoration: none;
+	display: block;
+	background-color: white;
+	border:2px solid #002b7a;
+	color:blue;
+	cursor: pointer;
+}
+section{
+	float: right;
+	width: 75%;
+	margin-bottom: 8px;
+	padding: 8px;
+}
+.contenedor{
+	margin: 25px 50px;
+	padding: 10px;
+	width: 500px;
+	border-radius: 10px;
+	border: 2px solid;
+}
+.contenedor .elemento label{
+	color: #002b7a;
+}
+.contenedor legend{
+	color: #002b7a;
+	text-align: center;
+	margin: 8px;
+}
+.contenedor .elemento input{
+	width: 90%;
+	padding: 10px 0px;
+	margin-bottom:10px;
+	margin-top: 2px;
+}
+.contenedor .elemento select{
+	width: 90%;
+	padding: 10px 0px;
+	margin-bottom:10px;
+	margin-top: 2px;
+}
+.contenedor .elemento input[type='submit']{
+    cursor: pointer;
+    letter-spacing: 5px;
+    background-color: white;
+    border: none;
+    color: #e6ac00;
+    width: 90%;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.contenedor_d{
+	width: 450px;
+	height: 300px;
+	border-radius: 10px;
+	border: 2px solid;
+	margin: 25px 25px;
+}
+.contenedor_d .nombre h3{
+	font-size: 18px;
+	text-align: center;
+	color: #002b7a;
+}
+
+.contenedor_d .info p{
+	font-size: 15px;
+	text-align: justify;
+	color: #002b7a;
+	margin: 9px 15px;
+	letter-spacing: 1px;
+}
+.contenedor_d .total p{
+	font-size: 15px;
+	text-align: right;
+	color: #002b7a;
+	margin: 9px 15px;
+}
+.contenedor_d button{
+	margin: 5px 60px 10px 60px;
+	letter-spacing: 2px;
+	background-color: white;
+	color: #e6ac00;
+	cursor: pointer;
+	border: none;
+}
+
+
