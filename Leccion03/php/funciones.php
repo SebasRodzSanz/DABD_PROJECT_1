@@ -65,6 +65,17 @@ function _carga_datos ($con){
 	mysqli_close($con);
 }
 
+function _antiguedad($fecha_ingreso){
+	// funcion date para obtener la fecha actual date('Y-m-d') es el  formato de mysql
+
+	$arreglo = explode('-',$fecha_ingreso);//separa la una cadena de texto según el simbolo
+	$valor1 = intval($arreglo[0]);// convertimos la cadena a un numero entero
+
+	$valor2 = intval(date('Y'));//obtenemos la fecha actual y la convertimos a un numero entero
+
+	return ($valor2 - $valor1);
+}
+
 function _cargar_docentes ($con,$sentencia_sql){
 	$sentencia_select = mysqli_query($con,$sentencia_sql);
 	if($sentencia_select){
@@ -73,6 +84,8 @@ function _cargar_docentes ($con,$sentencia_sql){
 				<div id="docente_cont">
 		EOT;
 		while($reg = mysqli_fetch_array($sentencia_select,MYSQLI_ASSOC)){
+			
+			$fecha = _antiguedad($reg['Fecha_ingreso']);
 			$html .= <<<EOT
 			<div class="contenedor_d">
 				<div class="nombre">
@@ -87,7 +100,7 @@ function _cargar_docentes ($con,$sentencia_sql){
 					<p>Sección: {$reg['Seccion']}</p>
 					<p>Correo Electronico: {$reg['Correo_e']}</p>
 					<p>Celular: {$reg['Celular']}</p>
-					<p>Antiguedad: Pendiente</p>
+					<p>Antiguedad: {$fecha}</p>
 				</div>
 				<div class="total">
 					<p>Total de cargos</p>
