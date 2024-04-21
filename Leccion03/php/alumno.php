@@ -2,27 +2,25 @@
 include_once "funciones.php";
 $html = 0;
 if(isset($_POST['buscar'])){
-	$filtro = $_POST['filtro'];
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
+	$filtro =mysqli_real_escape_string($con, $_POST['filtro']);
 	$sentencia;
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
 	if ($filtro != '*') {
-		$sentencia = "SELECT * FROM Alumno WHERE Opcion_titulacion = '$filtro';";
+		$sentencia = "SELECT * FROM Alumno WHERE Cuenta = '$filtro';";
 		$html =_cargar_alumnos($con,$sentencia);
 	}else{
 		$sentencia = "SELECT * FROM Alumno;";
 		$html =_cargar_alumnos($con,$sentencia);
 	}
 }else if (isset($_POST['alta'])) {
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
 
-	$cuenta = $_POST['cuenta'];
-	$nombre =$_POST['nombre'];  
-	$opc_titulo=$_POST['filtro']; 
-	$celular=$_POST['celular']; 
-	$correo=$_POST['correo']; 
-	$carrera=$_POST['carrera'];
+	$cuenta = mysqli_real_escape_string($con,$_POST['cuenta']);
+	$nombre = mysqli_real_escape_string($con,$_POST['nombre']);   
+	$celular= mysqli_real_escape_string($con,$_POST['celular']); 
+	$correo=  mysqli_real_escape_string($con,$_POST['correo']); 
 	// Generamos el sql que necesitamos
-	$sentencia_sql = "INSERT INTO Alumno(Cuenta, Nombre, Carrera, Opcion_titulacion, Correo_e, Telefono) VALUES ('$cuenta','$nombre','$carrera','$opc_titulo','$correo','$celular');";
+	$sentencia_sql = "INSERT INTO Alumno(Cuenta, Nombre, Correo_e, Folio,Telefono) VALUES ('$cuenta','$nombre','$correo',NULL,'$celular');";
 	//enviamos el sql a la base
 	$sentencia_insert = mysqli_query($con,$sentencia_sql);
 	if ($sentencia_insert) {
@@ -33,9 +31,9 @@ if(isset($_POST['buscar'])){
 	mysqli_close($con);
 
 }else if (isset($_POST['eliminar'])) {
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
 
-	$cuenta = $_POST['cuenta'];
+	$cuenta = mysqli_real_escape_string($con,$_POST['cuenta']);
 	// Generamos el sql que necesitamos
 	$sentencia_sql = "DELETE FROM Alumno WHERE Cuenta ='$cuenta';";
 	//enviamos el sql a la base
@@ -48,15 +46,20 @@ if(isset($_POST['buscar'])){
 	mysqli_close($con);
 
 }else if (isset($_POST['mod'])) {
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
 
-	$cuenta = $_POST['cuenta'];
-	$nombre =$_POST['nombre'];  
-	$opc_titulo=$_POST['opc_titul']; 
-	$celular=$_POST['celular']; 
-	$correo=$_POST['correo']; 
+	$cuenta = mysqli_real_escape_string($con,$_POST['cuenta']);
+	$nombre = mysqli_real_escape_string($con,$_POST['nombre']);  
+	$folio= mysqli_real_escape_string($con,$_POST['folio']);
+	$folio = ($folio == 'Ninguno') ?'NULL' : $folio ;
+	$celular= mysqli_real_escape_string($con,$_POST['celular']); 
+	$correo= mysqli_real_escape_string($con,$_POST['correo']); 
 	// Generamos el sql que necesitamos
-	$sentencia_sql = "UPDATE Alumno SET Nombre='$nombre', Opcion_titulacion='$opc_titulo', Telefono='$celular', Correo_e='$correo' WHERE Cuenta = '$cuenta';";
+	$sentencia_sql;
+	if($folio != "NULL")
+		$sentencia_sql = "UPDATE Alumno SET Nombre='$nombre', Folio='$folio', Telefono='$celular', Correo_e='$correo' WHERE Cuenta = '$cuenta';";
+	else
+		$sentencia_sql = "UPDATE Alumno SET Nombre='$nombre', Telefono='$celular', Correo_e='$correo' WHERE Cuenta = '$cuenta';";
 	//enviamos el sql a la base
 	$sentencia_update = mysqli_query($con,$sentencia_sql);
 	if ($sentencia_update) {
@@ -95,7 +98,6 @@ if(isset($_POST['buscar'])){
 		<button id="btn_modificar">Modificar Alumno</button>
 		<button id="btn_eliminar">Eliminar Alumno</button>
 		<button id="btn_buscar">Buscar Alumno</button>
-		<button id="btn_ver">Visualizar Alumno</button>
 		<button id="btn_regresar">Regresar a Inicio</button>
 	</nav>
 	<section>
@@ -117,25 +119,6 @@ if(isset($_POST['buscar'])){
 						Nombre: 
 					</label>
 					<input type="text" name="nombre" required id="nom">
-				</div>
-				<div class="elemento">
-					<label for="car">
-						Carrera:
-					</label>
-					<input type="text" name="carrera" required id="car">
-				</div>
-				<div class="elemento">
-					<label for="op">
-						Opción de Titulación : 
-					</label>
-					<select name="filtro" id="fil">
-						<option value="Tesis">Tesis</option>
-						<option value="Servicio Social">Servicio Social</option>
-						<option value="Diplomado">Diplomado</option>
-						<option value="Maestria">Maestria</option>
-						<option value="Seminario">Seminario</option>
-						<option value="Trabajo Profecional">Trabajo Profecional</option>
-					</select>
 				</div>
 				<div class="elemento">
 					<label for="cel">
@@ -163,20 +146,21 @@ if(isset($_POST['buscar'])){
 					<label for="nom">
 						Nombre: 
 					</label>
-					<input type="text" name="nombre" required id="nom">
+					<input type="text" name="nombre" required id="nom"disabled="true">
+				</div>
+				<div class="elemento">
+					<label for="cuen">
+						Cuenta: 
+					</label>
+					<input type="text" name="num_cuenta" required id="cuen"disabled="true">
 				</div>
 				<div class="elemento">
 					<label for="titu">
-						Opción de Titulación:
+						Folio de trabajo:
 					</label>
-					<input type="text" name="opc_titul" required id="titu">
+					<input type="text" name="folio" required id="titu" disabled="true">
 				</div>
-				<div class="elemento">
-					<label for="car">
-						Carrera:
-					</label>
-					<input type="text" name="carrera" required id="car">
-				</div>
+				
 				<div class="elemento">
 					<input type="submit" name="eliminar" value="Enviar" >
 					<input type="hidden" name="cuenta">
@@ -208,9 +192,9 @@ if(isset($_POST['buscar'])){
 				</div>
 				<div class="elemento">
 					<label for="titu">
-						Opción de Titulación:
+						Folio de trabajo:
 					</label>
-					<input type="text" name="opc_titul" required id="titu">
+					<input type="text" name="folio" required id="titu">
 				</div>
 				<div class="elemento">
 					<input type="submit" name="mod" value="Enviar" >

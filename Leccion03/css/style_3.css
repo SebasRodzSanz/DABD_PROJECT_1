@@ -75,6 +75,13 @@ section{
     padding: 5px;
     font-size: 20px;
 }
+.contenedor .elemento input[type='checkbox']{
+	width: 6%;
+	padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
 
 .contenedor_d{
 	width: 450px;
@@ -109,6 +116,46 @@ section{
 	color: #e6ac00;
 	cursor: pointer;
 	border: none;
+}
+#contenedor_trab{
+	width: 90%;
+}
+#contenedor_trab table{
+	width: 100%;
+	table-layout: auto;
+}
+#contenedor_trab th,td{
+	padding: 5px;
+	letter-spacing: 1px;
+}
+#contenedor_trab tr{
+	margin-bottom: 6px;
+}
+#contenedor_trab thead{
+	color:#e6ac00;
+	background-color: #002b7a;
+}
+#contenedor_trab caption{
+	text-align:center ;
+	color: #e6ac00;
+}
+.btn-tabla{
+	margin :10px;
+	padding: 7px;
+	text-decoration: none;
+	display: block;
+	background-color: white;
+	border:2px solid #002b7a;
+	color:blue;
+	cursor: pointer;
+}
+#seleccion{
+	cursor: pointer;
+    background-color: white;
+    border: none;
+    color: #e6ac00;
+    padding: 5px;
+    font-size: 14px;
 }
 
 

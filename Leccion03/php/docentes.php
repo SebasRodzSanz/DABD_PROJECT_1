@@ -2,9 +2,9 @@
 include_once "funciones.php";
 $html = 0;
 if(isset($_POST['buscar'])){
-	$filtro = $_POST['filtro'];
 	$sentencia;
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
+	$filtro =mysqli_real_escape_string($con, $_POST['filtro']);
 	if ($filtro != '*') {
 		$sentencia = "SELECT * FROM Docente WHERE Seccion = '$filtro';";
 		$html =_cargar_docentes($con,$sentencia);
@@ -13,18 +13,18 @@ if(isset($_POST['buscar'])){
 		$html =_cargar_docentes($con,$sentencia);
 	}
 }else if (isset($_POST['alta'])) {
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
-
-	$num_tdor = $_POST['num_tdor'];
-	$nombre =$_POST['nombre']; 
-	$fecha=$_POST['fecha']; 
-	$rfc=$_POST['RFC']; 
-	$titulo=$_POST['titulo']; 
-	$especialidad=$_POST['especialidad']; 
-	$celular=$_POST['celular']; 
-	$correo=$_POST['correo']; 
-	$t_cargos =$_POST['t_cargos'];
-	$seccion =$_POST['seccion']; 
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
+	
+	$num_tdor = mysqli_real_escape_string($con,$_POST['num_tdor']);
+	$nombre = mysqli_real_escape_string($con,$_POST['nombre']); 
+	$fecha= mysqli_real_escape_string($con,$_POST['fecha']); 
+	$rfc= mysqli_real_escape_string($con,$_POST['RFC']); 
+	$titulo= mysqli_real_escape_string($con,$_POST['titulo']); 
+	$especialidad= mysqli_real_escape_string($con,$_POST['especialidad']); 
+	$celular= mysqli_real_escape_string($con,$_POST['celular']); 
+	$correo= mysqli_real_escape_string($con,$_POST['correo']); 
+	$t_cargos = mysqli_real_escape_string($con,$_POST['t_cargos']);
+	$seccion = mysqli_real_escape_string($con,$_POST['seccion']); 
 	// Generamos el sql que necesitamos
 	$sentencia_sql = "INSERT INTO Docente (Num_trabajador,Nombre_docente,Fecha_ingreso,Rfc, Titulo,Especialidad,Celular,Correo_e,Total_cargos,Seccion) VALUES ('$num_tdor', '$nombre','$fecha','$rfc','$titulo','$especialidad','$celular','$correo','$t_cargos','$seccion');";
 	//enviamos el sql a la base
@@ -37,9 +37,9 @@ if(isset($_POST['buscar'])){
 	mysqli_close($con);
 
 }else if (isset($_POST['eliminar'])) {
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
 
-	$num_tdor = $_POST['num_t']; 
+	$num_tdor = mysqli_real_escape_string($con,$_POST['num_t']); 
 	// Generamos el sql que necesitamos
 	$sentencia_sql = "DELETE FROM Docente WHERE Num_trabajador ='$num_tdor';";
 	//enviamos el sql a la base
@@ -52,14 +52,14 @@ if(isset($_POST['buscar'])){
 	mysqli_close($con);
 
 }else if (isset($_POST['mod'])) {
-	$con = mysqli_connect("127.0.0.1:3308","root","","coordinacion_web");
+	$con = mysqli_connect("localhost:3306","root","","coordinacion_web");
 
-	$num_tdor = $_POST['num_t'];
-	$nombre =$_POST['nombre'];  
-	$celular=$_POST['celular']; 
-	$correo=$_POST['correo']; 
-	$t_cargos =$_POST['t_cargos'];
-	$seccion =$_POST['seccion']; 
+	$num_tdor = mysqli_real_escape_string($con,$_POST['num_t']);
+	$nombre = mysqli_real_escape_string($con,$_POST['nombre']);  
+	$celular= mysqli_real_escape_string($con,$_POST['celular']); 
+	$correo= mysqli_real_escape_string($con,$_POST['correo']); 
+	$t_cargos = mysqli_real_escape_string($con,$_POST['t_cargos']);
+	$seccion = mysqli_real_escape_string($con,$_POST['seccion']); 
 	// Generamos el sql que necesitamos
 	$sentencia_sql = "UPDATE Docente SET Nombre_docente='$nombre', Celular='$celular', Correo_e='$correo', Total_cargos='$t_cargos', Seccion='$seccion' WHERE Num_trabajador = '$num_tdor';";
 	//enviamos el sql a la base
@@ -100,7 +100,6 @@ if(isset($_POST['buscar'])){
 		<button id="btn_modificar">Modificar Docente</button>
 		<button id="btn_eliminar">Eliminar Docente</button>
 		<button id="btn_buscar">Buscar Docente</button>
-		<button id="btn_ver">Visualizar docente</button>
 		<button id="btn_regresar">Regresar a Inicio</button>
 	</nav>
 	<section>

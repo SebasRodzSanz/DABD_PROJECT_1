@@ -1,0 +1,122 @@
+*{
+		
+}
+#titulo{
+	text-align: center;
+	display: grid;/*Permite la creacion de columnas*/
+	width: 100%;
+	grid-template-columns: 25% 50% 25%;/*Permite definir el tamaño de las columnas*/
+	background-color: #002b7a;
+} 
+#titulo p,h1{
+	color: #e6ac00;
+}
+body{
+	margin: 0px;
+	padding: 0px;
+	line-height:1.5;
+}
+nav{
+    margin: 15px;
+    padding: 3px;
+}
+nav button{
+    color: blue;
+    background-color: white;
+    border: 3px solid #002b7a;
+    cursor: pointer;
+    /* font-size: 18px; */
+    padding: 7px;
+}
+div.informacion{
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    justify-content: space-around; /*Acomoda los elementos tomando su espacio alrededor*/
+}
+div#docente{
+    width: 40%;
+    /* background: blue; */
+}
+div#alumno{
+    width: 40%;
+   /* background: aqua; */
+}
+div#tarjeta{
+    width: 80%;
+    margin: auto;
+    border: 2px solid;
+    border-radius: 3px;
+}
+div#tarjeta p{
+    margin: 6px 6px;
+    color: #002b7a;
+}
+div#tarjeta h3{
+    text-align: center;
+    color: #002b7a;
+}
+div#tarjeta button{
+   padding: 4px 4px;
+   margin: 6px 7px;
+   background-color: white;
+   color: #e6ac00;
+   cursor: pointer;
+   border: none;
+   font-size: 16px;
+}
+div.formulario{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+div.formulario div.contenido{
+    width:500px;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 9px;
+    
+}
+div.formulario div.contenido legend{
+    margin: 11px;
+    font-size: 30px;
+    text-align: center;
+    color: #002b7a;
+}
+div.formulario div.contenido div.elemento label{
+    color: #002b7a;
+    margin: 4px;
+}
+div.formulario div.contenido input[type='text']{
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    padding: 10px 0px;
+}
+div.formulario div.contenido input[type='checkbox']{
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+div.formulario div.contenido input[type='submit']{
+    cursor: pointer;
+    letter-spacing: 5px;
+    background-color: white;
+    border: none;
+    color: #e6ac00;
+    width: 90%;
+    padding: 5px;
+    margin: 10px;
+    font-size: 30px;
+}
+div.informacion div.seleccion  select{
+   color:#002b7a;
+   padding: 3px;
+   margin: 4px;
+   width: 70%;
+}
+div.informacion  legend{
+    padding: 3px;
+    font-size:17px;
+ }

@@ -7,7 +7,6 @@ tmp_form_mod = d.getElementById('tmp_form_Mdoc').content,
 tmp_form_eli = d.getElementById('tmp_form_Edoc').content,
 btn_alta = d.getElementById('btn_alta'),
 btn_reg = d.getElementById('btn_regresar'),
-btn_visualizar = d.getElementById('btn_ver'),
 btn_mod = d.getElementById('btn_modificar'),
 btn_eli = d.getElementById('btn_eliminar'),
 fragmento = d.createDocumentFragment();
@@ -45,7 +44,8 @@ btn_reg.addEventListener('click', (e)=>{
 	d.location.href = "../index.html";
 	//Regresamos a la pagina de inicio
 });
-btn_visualizar.addEventListener('click', (e)=>{
+
+d.addEventListener('DOMContentLoaded',(e)=>{
 	info = d.getElementById('doc_info');
 	if (info) {
 		titulo.textContent ='Docentes dados de alta';
@@ -53,10 +53,8 @@ btn_visualizar.addEventListener('click', (e)=>{
 		clon = info.content.cloneNode(true);
 		fragmento.appendChild(clon);
 		titulo.appendChild(fragmento);
-	}else {
-		alert('Selecciona una opción en buscar docente y envia la petición');
 	}
-});
+})
 d.addEventListener('click',(e)=>{
 	if (e.target.matches('#seleccion')) {
 		 form_mod = tmp_form_mod.querySelector('#form_mod'); 

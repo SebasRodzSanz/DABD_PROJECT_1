@@ -76,8 +76,8 @@ section{
     font-size: 20px;
 }
 .contenedor_d{
-	width: 640px;
-	height: 430px;
+	width: 70%;
+	/* height: 60%; */
 	border-radius: 10px;
 	border: 2px solid;
 	margin: 25px 25px;
@@ -94,6 +94,13 @@ section{
 	color: #002b7a;
 	margin: 9px 15px;
 	letter-spacing: 1px;
+}
+.contenedor_d .info ol{
+	font-size: 14px;
+	text-align: justify;
+	color: #002b7a;
+	margin:3px;
+	
 }
 .contenedor_d .total p{
 	font-size: 15px;

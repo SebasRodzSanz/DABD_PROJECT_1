@@ -7,7 +7,6 @@ tmp_form_mod = d.getElementById('tmp_form_Malum').content,
 tmp_form_eli = d.getElementById('tmp_form_Ealum').content,
 btn_alta = d.getElementById('btn_alta'),
 btn_reg = d.getElementById('btn_regresar'),
-btn_visualizar = d.getElementById('btn_ver'),
 btn_mod = d.getElementById('btn_modificar'),
 btn_eli = d.getElementById('btn_eliminar'),
 fragmento = d.createDocumentFragment();
@@ -45,7 +44,7 @@ btn_reg.addEventListener('click', (e)=>{
 	d.location.href = "../index.html";
 	//Regresamos a la pagina de inicio
 });
-btn_visualizar.addEventListener('click', (e)=>{
+d.addEventListener('DOMContentLoaded',(e)=>{
 	info = d.getElementById('alu_info');
 	if (info) {
 		titulo.textContent ='Alumnos dados de alta';
@@ -53,8 +52,6 @@ btn_visualizar.addEventListener('click', (e)=>{
 		clon = info.content.cloneNode(true);
 		fragmento.appendChild(clon);
 		titulo.appendChild(fragmento);
-	}else {
-		alert('Selecciona una opción en buscar alumno y envia la petición');
 	}
 });
 d.addEventListener('click',(e)=>{
@@ -66,15 +63,15 @@ d.addEventListener('click',(e)=>{
 		form_mod.celular.value = e.target.dataset.cel;
 		form_mod.correo.value = e.target.dataset.cor;
 		form_mod.nombre.value = e.target.dataset.nom;
-		form_mod.opc_titul.value = e.target.dataset.op_titul;
+		form_mod.folio.value = e.target.dataset.folio;
 		form_mod.cuenta.value = e.target.dataset.cuenta;
 		
 
 		//Llenar el  formulario eliminar
-		form_eli.carrera.value = e.target.dataset.carrera;
 		form_eli.nombre.value = e.target.dataset.nom;
-		form_eli.opc_titul.value = e.target.dataset.op_titul;
+		form_eli.folio.value = e.target.dataset.folio;
 		form_eli.cuenta.value = e.target.dataset.cuenta;
+		form_eli.num_cuenta.value = e.target.dataset.cuenta;
 
 		let nombre =  e.target.dataset.nom;
 
